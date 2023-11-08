@@ -17,7 +17,7 @@ public class LottoController {
         LottoStore lottoStore = purchaseLotto(money);
 
         LottoAnswer lottoAnswer = getLottoAnswerFromUser();
-        BonusNumber bonusNumber = getBonusNumberFromUser(lottoAnswer);
+        getBonusNumberFromUser(lottoAnswer);
 
         displayStatics(lottoStore, lottoAnswer, money);
     }
@@ -29,7 +29,7 @@ public class LottoController {
         Output.displayReturnRatio(winningStatistics);
     }
 
-    private BonusNumber getBonusNumberFromUser(LottoAnswer lottoAnswer) {
+    private void getBonusNumberFromUser(LottoAnswer lottoAnswer) {
         BonusNumber bonusNumber;
         while (true) {
             try {
@@ -42,7 +42,6 @@ public class LottoController {
             }
         }
         System.out.println();
-        return bonusNumber;
     }
 
     private LottoAnswer getLottoAnswerFromUser() {
