@@ -17,17 +17,7 @@ public class LottoController {
         LottoStore lottoStore = purchaseLotto(money);
 
         LottoAnswer lottoAnswer = getLottoAnswerFromUser();
-
-
-        while (true) {
-            try {
-                BonusNumber bonusNumber = getBonusNumberFromUser();
-                lottoAnswer.setBonusNumber(bonusNumber);
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        BonusNumber bonusNumber = getBonusNumberFromUser(lottoAnswer);
 
         displayStatics(lottoStore, lottoAnswer, money);
     }
@@ -39,12 +29,13 @@ public class LottoController {
         Output.displayReturnRatio(winningStatistics);
     }
 
-    private BonusNumber getBonusNumberFromUser() {
+    private BonusNumber getBonusNumberFromUser(LottoAnswer lottoAnswer) {
         BonusNumber bonusNumber;
         while (true) {
             try {
                 Output.displayBonusNumberPrompt();
                 bonusNumber = input.setBonusNumber();
+                lottoAnswer.setBonusNumber(bonusNumber);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
